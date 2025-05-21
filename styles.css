@@ -1,0 +1,292 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primaria: #4f46e5;
+    --secundaria: #7c3aed; /* Corrigido de 'segundaria' para 'secundaria' */
+    --escuro: #0f172a;
+    --mais-escuro: #0a0f1c; /* Corrigido de 'maisescuro' */
+    --claro: #e2e8f0;
+    --vidro: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: var(--escuro);
+    color: var(--claro);
+}
+
+/* --- Navegação --- */
+.navegacao { /* Classe padronizada */
+    top: 0;
+    position: fixed;
+    background: rgba(15, 23, 42, 0.8);
+    width: 100%;
+    z-index: 100;
+    padding: 1.5rem;
+    backdrop-filter: blur(5px); /* Efeito de vidro */
+}
+
+.menu { /* Classe padronizada */
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+    justify-content: center;
+}
+
+.menu-link { /* Classe padronizada */
+    text-decoration: none;
+    color: var(--claro);
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0; /* Correção na vírgula */
+}
+
+.menu-link::after {
+    content: '';
+    height: 2px;
+    width: 0%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, var(--primaria), var(--secundaria));
+    transition: width 0.5s ease;
+}
+
+.menu-link:hover::after {
+    width: 100%;
+}
+
+/* --- Cabeçalho (Início) --- */
+.cabecalho { /* Classe padronizada */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem; /* Adicionado padding para respiro em telas menores */
+    text-align: center;
+    animation: flutuar 5s ease-in-out infinite;
+}
+
+.perfil {
+    width: 250px;
+    height: 250px;
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+    border-radius: 50%;
+    border: 4px solid var(--vidro);
+    object-fit: cover; 
+   
+}
+
+h1 {
+    font-size: 3.5rem;
+    color: var(--primaria);
+    font-weight: bold;
+    margin: 20px 0 0; /* Ajuste na margem inferior para o subtítulo */
+}
+
+.cabecalho-subtitulo { /* Classe padronizada */
+    font-size: 1.5rem;
+    color: var(--claro);
+    text-align: center;
+    margin-top: 10px; /* Pequena margem superior para separar do h1 */
+}
+
+/* Removido o estilo genérico para h3 aqui para evitar conflitos */
+/* h3 {
+    font-size: 3.5rem;
+    color: var(--primaria);
+    font-weight: bold;
+    margin: 20px;
+} */
+
+
+/* --- Seção Sobre Mim --- */
+.sobre { /* Classe padronizada */
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.sobre-titulo { /* Classe padronizada */
+    font-size: 3rem;
+    color: var(--claro);
+    margin-bottom: 20px;
+}
+
+.sobre-caixa { /* Classe padronizada */
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 16px;
+    border: 1px solid var(--vidro);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sobre-paragrafo { /* Classe padronizada */
+    text-align: center;
+    font-size: 1.1rem; /* Um pouco maior para melhor leitura */
+    line-height: 1.6; /* Aumenta o espaçamento entre linhas */
+}
+
+/* --- Seção Meus Projetos --- */
+.projetos { /* Classe padronizada */
+    padding: 6rem 2rem;
+}
+
+.projetos-titulo { /* Classe padronizada */
+    text-align: center;
+    font-size: 3rem; /* Ajuste para ter um bom tamanho */
+    margin-bottom: 3rem; /* Aumenta a margem para separar do grid */
+}
+
+.projetos-grid { /* Nova classe para o contêiner do grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajustado minmax */
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.projeto-card { /* Nova classe para cada card individual */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--vidro);
+    overflow: hidden; /* Importante para o border-radius da imagem */
+    display: flex;
+    flex-direction: column; /* Organiza conteúdo em coluna */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição para o hover */
+}
+
+.projeto-card:hover {
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+    transform: translateY(-5px) scale(1.02); /* Levemente menor que antes para não exagerar */
+}
+
+.projeto-card-imagem { /* Nova classe para as imagens dentro dos cards */
+    width: 100%;
+    height: 180px; /* Altura fixa para as imagens dos projetos */
+    object-fit: cover; /* Garante que a imagem preencha sem distorcer, cortando se necessário */
+    border-radius: 16px 16px 0 0; /* Arredonda apenas os cantos superiores */
+}
+
+.projeto-card-conteudo { /* Nova classe para o conteúdo textual do card */
+    padding: 1.5rem; /* Espaçamento interno para o texto */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Faz com que o conteúdo ocupe o espaço restante */
+}
+
+.projeto-card-titulo { /* Nova classe para o título do projeto */
+    font-size: 1.8rem; /* Tamanho adequado para o título do projeto */
+    color: var(--primaria);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.projeto-card-paragrafo { /* Nova classe para o parágrafo do projeto */
+    font-size: 0.95rem; /* Tamanho da fonte para a descrição */
+    color: #cccccc; /* Cor mais suave para o texto */
+    line-height: 1.5; /* Espaçamento entre linhas para melhor legibilidade */
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* --- Seção Contato --- */
+.contato { /* Classe padronizada */
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.contato-titulo { /* Classe padronizada */
+    font-size: 3rem;
+    color: var(--claro);
+    margin-bottom: 3rem;
+}
+
+.formulario-contato { /* Classe padronizada */
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    border: 1px solid var(--vidro);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espaçamento entre os campos */
+}
+
+.grupo-form { /* Classe padronizada */
+    width: 100%;
+}
+
+.campo-form,
+.text-form { /* Classes padronizadas */
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--vidro);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--claro);
+    font-size: 1rem;
+    outline: none; /* Remove o contorno azul ao focar */
+    transition: border-color 0.3s ease;
+}
+
+.campo-form:focus,
+.text-form:focus {
+    border-color: var(--primaria);
+}
+
+.text-form {
+    min-height: 120px; /* Altura mínima para a área de texto */
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+.botao-enviar { /* Nova classe para o botão de enviar */
+    padding: 1rem 2rem;
+    background: linear-gradient(90deg, var(--primaria), var(--secundaria));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.botao-enviar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+}
+.particulas{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.5;
+  background: 
+  radial-gradient(circle at 10% 20%,var(--primaria) 0%, transparent 20%),
+  radial-gradient(circle at 90% 80%,var(--secundaria) 0%, transparent 20%),var(--escuro);
+
+}
+@keyframes flutuar {
+    0%, 100% { /* No início e no fim da animação, o elemento está na posição original */
+        transform: translateY(0);
+    }
+    50% { /* No meio da animação, o elemento se move 20px para cima */
+        transform: translateY(-20px);
+    }
+}
